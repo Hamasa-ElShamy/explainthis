@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ExplainThis: Don&#x27;t just look at the error. Understand it.</title><meta name="description" content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically.">
+<meta property="og:title" content="ExplainThis"><meta property="og:description" content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically.">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.65 var(--body);background:var(--bg);color:var(--fg)}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
+a{color:var(--acc)}code,pre{font-family:ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--code);color:var(--codefg);border:1px solid var(--line);border-radius:var(--r);padding:16px;overflow:auto;font-size:.86rem;line-height:1.5}
+.btn{display:inline-block;padding:11px 22px;border-radius:var(--r);background:var(--acc);color:var(--accfg);font-weight:600;text-decoration:none;margin:4px 8px 4px 0}
+.btn.alt{background:transparent;color:var(--fg);border:1px solid var(--line)}
+section{padding:26px 0}h2{font-family:var(--head);font-size:1.5rem;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.grid .card{margin:0}
+.mut{color:var(--mut)}.rtl{direction:rtl;text-align:right}
+img.shot{max-width:100%;border-radius:var(--r);border:1px solid var(--line);margin:8px 0}
+.warn{border-left:5px solid var(--warn)}
+.os{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.os h3{margin:0 0 6px;font-size:1rem}.os pre{margin:6px 0}
+footer{padding:44px 0 60px;color:var(--mut);text-align:center;font-size:.9rem}
+footer img{border-radius:50%;border:2px solid var(--line);display:block;margin:0 auto 10px}
+.badge{display:inline-block;font-size:.72rem;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mut);margin-left:6px;vertical-align:middle}
+.ok{color:#2e9e5b}.no{color:#c0392b}
+
+:root{--bg:#0f1419;--fg:#e6edf3;--mut:#8b98a5;--card:#161c24;--line:#2a323c;--acc:#f0883e;--accfg:#1a1005;--code:#0a0e12;--codefg:#ffd9b8;--warn:#f0883e;--r:10px;--body:system-ui,-apple-system,Segoe UI,sans-serif;--head:system-ui,sans-serif}
+header.hero{padding:76px 0 46px;border-bottom:1px solid var(--line);background:radial-gradient(600px 240px at 20% 0,#f0883e33,transparent)}
+h1{font-size:3.1rem;margin:0 0 8px;color:var(--acc)}.tag{color:var(--mut);font-size:1.2rem;max-width:620px}
+.hero .wrap{text-align:left}</style></head><body>
+<header class="hero"><div class="wrap"><h1>ExplainThis</h1><p class="tag">Don&#x27;t just look at the error. Understand it.</p>
+<a class="btn" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" href="#install">Install</a>
+<p class="mut" style="margin-top:16px">Open source &middot; MIT license &middot; early release v0.1.0</p></div></header>
+<main class="wrap">
+<section><h2>What it does</h2><p>Run your command through explainthis run and it explains the error only if the command fails: what it means, where it happened, what you can do, and what is dangerous about the tempting shortcut. It can also follow a log file, read the clipboard or OCR a screenshot of a warning. It never runs a fix or clicks Allow for you, and no AI service is involved.</p></section>
+<section><div class="grid"><div class="card"><b>Reads errors for you</b><div class="mut">From a failed command, a pipe, a log, the clipboard or a screenshot.</div></div><div class="card"><b>Says where</b><div class="mut">File, line and the code line from a Python traceback.</div></div><div class="card"><b>Explains the consequence</b><div class="mut">What happens if you take the risky shortcut, with a risk level.</div></div><div class="card"><b>Arabic and English</b><div class="mut">Full explanations in both languages.</div></div><div class="card"><b>Never acts for you</b><div class="mut">No command is run, no button is clicked.</div></div></div></section>
+<section><h2>Examples</h2><h3>Real output (python run, Windows warning text, Arabic)</h3><pre><code>$ explainthis run -- python3 /tmp/t1.py
+Traceback (most recent call last):
+  File &quot;/tmp/t1.py&quot;, line 1, in &lt;module&gt;
+    import cv2
+ModuleNotFoundError: No module named &#x27;cv2&#x27;
+
+--- ExplainThis: the command exited with code 1 ---
+What it says: Python cannot find the module &#x27;cv2&#x27;
+Where: /tmp/t1.py:1 (&lt;module&gt;)
+Code: import cv2
+Meaning: The module is not installed in the Python that ran your script, or its name is spelled differently.
+What you can do:
+  1. Install it with the same Python that failed: `python3 -m pip install opencv-python`.
+  2. The pip name can differ from the import name (here: `cv2` is installed as `opencv-python`). Check the spelling on pypi.org before installing: a one-letter typo can be a different package.
+  3. If you use a virtual environment, activate it first.
+(ExplainThis never runs a fix or clicks anything for you.)
+
+$ cat tests/samples/win-smartscreen.txt | explainthis
+What it says: Windows SmartScreen blocked an unrecognised app
+Meaning: Windows cannot check this program&#x27;s reputation. That is not proof of a virus: new or small programs often show this. It also means Windows has no evidence the program is safe.
+What you can do:
+  1. Check where you got it. Prefer the official site of the program.
+  2. Look at the file&#x27;s digital signature: right-click the file, Properties, Digital Signatures. An unsigned file is not proof of danger, but ask whether you trust the source.
+  3. Compare the file&#x27;s SHA-256 (`Get-FileHash FILE` in PowerShell) with the one on the official page, if they publish it.
+  4. Scan it with Microsoft Defender, or upload it to virustotal.com.
+If you take the tempting shortcut: &#x27;More info&#x27; then &#x27;Run anyway&#x27; lets the program start with your user&#x27;s permissions. If it is malware it can read your files and saved passwords. ExplainThis never clicks it for you.
+Risk: High
+(ExplainThis never runs a fix or clicks anything for you.)</code></pre></section>
+
+<section id="install"><h2>Install</h2><div class="os">
+<div class="card"><h3>Windows</h3><div class="mut">Install Python 3.9+ from python.org (tick "Add python.exe to PATH"), then in PowerShell:</div>
+<pre><code>py -m pip install git+https://github.com/mohamed-elshamy-ai/explainthis
+py -m pip install .
+explainthis run -- python app.py</code></pre><div><span class="mut"><b>Untested.</b></span> Should work. Only tested on Linux.</div></div>
+<div class="card"><h3>macOS</h3><div class="mut">Python 3.9+ (<code>brew install python</code> or python.org), then in Terminal:</div>
+<pre><code>python3 -m pip install git+https://github.com/mohamed-elshamy-ai/explainthis
+pip install .
+explainthis run -- python app.py</code></pre><div><span class="mut"><b>Untested.</b></span> Should work. Only tested on Linux.</div></div>
+<div class="card"><h3>Linux</h3><div class="mut">Python 3.9+ is usually installed. In a terminal:</div>
+<pre><code>python3 -m pip install --user git+https://github.com/mohamed-elshamy-ai/explainthis
+pip install .
+explainthis run -- python app.py</code></pre><div><span class="ok"><b>Tested.</b></span> Tested on Linux (Python 3.10). Screenshots need tesseract.</div></div>
+<div class="card"><h3>Android</h3><div><span class="no"><b>Not available.</b></span> Not available.</div></div>
+</div></section>
+<section><h2>How it works</h2><ol><li>The text comes from the command, a pipe, a log, the clipboard or OCR of a screenshot.</li><li>It finds where it happened (file, line, code).</li><li>It matches the message against 28 hand-written entries, filling in details like the module name.</li><li>It prints meaning, steps, the consequence of the risky shortcut and a risk level, in English or Arabic.</li><li>If the message is unknown it says so and shows the key line instead of guessing.</li></ol>
+<div class="card rtl"><b>الشرح بالعربي</b><p>بتشغل أمرك من خلال explainthis run ولو فشل بياخد الخطأ تلقائياً. بيحدد المكان (الملف والسطر)، وبيطابق الرسالة على 28 مدخل مكتوب يدوي وبيشرح المعنى والخطوات وخطر الحل السريع. نفس الشيء مع لوج أو clipboard أو صورة شاشة (OCR). لو الرسالة مش معروفة بيقولك كده ومش بيخمن. مش بينفذ حاجة بدالك.</p></div></section>
+<section><h2>Honest limits</h2><div class="card warn"><ul><li>Only 28 kinds of message are known. Anything else gets an honest &#x27;no built-in explanation&#x27;. No AI model.</li><li>Screenshots are read with OCR text only. It does not understand pictures or icons.</li><li>No global shortcut, region picker or tray app yet. Clipboard and screen capture are untested.</li><li>Windows entries were not run on a Windows machine.</li><li>It gives general advice. It cannot see your machine.</li></ul></div></section>
+</main>
+<footer><img src="author.jpg" alt="Mohamed Elshamy" width="64" height="64">Built by <a href="https://github.com/mohamed-elshamy-ai">Mohamed Elshamy</a>. Issues and pull requests are welcome on <a href="https://github.com/mohamed-elshamy-ai/explainthis">GitHub</a>.</footer>
+</body></html>
