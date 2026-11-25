@@ -69,6 +69,10 @@ Each entry has a plain-language meaning, steps, and, where there is a dangerous 
 - It never runs or clicks anything. `run` only runs the command you gave it.
 - The explanations are general. They cannot see your machine, so "check X" is advice, not a diagnosis.
 
+## Similar tools (honest comparison)
+
+Tools that explain terminal errors already exist, for example [errbuddy](https://github.com/sithija-jayasinghe/errbuddy) and [Errxplain](https://github.com/EliaGambalunga/Errxplain), mostly using an AI model. ExplainThis is rule-based and offline, so it handles only 28 known messages, but it covers Windows system warnings (SmartScreen, UAC), says what the risky shortcut would do, reads logs and screenshots, and answers in Arabic.
+
 ## Technical notes
 
 [ARCHITECTURE.md](ARCHITECTURE.md), Arabic and English. 40 pytest tests: every knowledge entry has a sample and must be recognised, location extraction, Arabic output, run on failure and silence on success, log watching, screenshot OCR, the window with its token. Output: [`demo/test-output.txt`](demo/test-output.txt).
