@@ -1,0 +1,4 @@
+To github.com:user/repo.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:user/repo.git'
+hint: Updates were rejected because the remote contains work that you do not have locally.

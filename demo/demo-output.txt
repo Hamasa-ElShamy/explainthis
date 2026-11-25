@@ -1,0 +1,47 @@
+$ explainthis run -- python3 /tmp/t1.py
+Traceback (most recent call last):
+  File "/tmp/t1.py", line 1, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+--- ExplainThis: the command exited with code 1 ---
+What it says: Python cannot find the module 'cv2'
+Where: /tmp/t1.py:1 (<module>)
+Code: import cv2
+Meaning: The module is not installed in the Python that ran your script, or its name is spelled differently.
+What you can do:
+  1. Install it with the same Python that failed: `python3 -m pip install opencv-python`.
+  2. The pip name can differ from the import name (here: `cv2` is installed as `opencv-python`). Check the spelling on pypi.org before installing: a one-letter typo can be a different package.
+  3. If you use a virtual environment, activate it first.
+(ExplainThis never runs a fix or clicks anything for you.)
+
+$ cat tests/samples/win-smartscreen.txt | explainthis
+What it says: Windows SmartScreen blocked an unrecognised app
+Meaning: Windows cannot check this program's reputation. That is not proof of a virus: new or small programs often show this. It also means Windows has no evidence the program is safe.
+What you can do:
+  1. Check where you got it. Prefer the official site of the program.
+  2. Look at the file's digital signature: right-click the file, Properties, Digital Signatures. An unsigned file is not proof of danger, but ask whether you trust the source.
+  3. Compare the file's SHA-256 (`Get-FileHash FILE` in PowerShell) with the one on the official page, if they publish it.
+  4. Scan it with Microsoft Defender, or upload it to virustotal.com.
+If you take the tempting shortcut: 'More info' then 'Run anyway' lets the program start with your user's permissions. If it is malware it can read your files and saved passwords. ExplainThis never clicks it for you.
+Risk: High
+(ExplainThis never runs a fix or clicks anything for you.)
+
+$ explainthis image <screenshot of a warning>   # needs tesseract
+(see tests: test_screenshot_ocr)
+
+$ cat tests/samples/py-pip-managed.txt | explainthis --lang ar
+الرسالة: pip رافض يسطب في بايثون النظام
+المعنى: نظام لينكس بتاعك بيدير حزم بايثون بنفسه، فـ pip متوقف عن قصد عشان ميبوظش أدوات النظام.
+ممكن تعمل إيه:
+  1. اعمل virtual environment: `python3 -m venv .venv && . .venv/bin/activate` وبعدين شغل pip.
+  2. لبرامج سطر الأوامر استخدم `pipx install NAME`.
+لو عملت الحل السريع الخطر: الرسالة بتقترح `--break-system-packages`. بتشتغل لكنها ممكن تبدل حزم النظام نفسه محتاجها وتبوظ أدوات.
+درجة الخطورة: متوسط
+(الأداة مش بتنفذ أي أمر بدالك.)
+
+$ explainthis text "Error: flux capacitor desynchronised (code ZZ-91)"
+I do not have a built-in explanation for this message.
+Key line: Error: flux capacitor desynchronised (code ZZ-91)
+Try searching for the message text without your own file names: "Error: flux capacitor desynchronised (code ZZ-91)"
+(ExplainThis only explains messages it knows. It does not guess.)

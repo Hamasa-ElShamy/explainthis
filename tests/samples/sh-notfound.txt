@@ -1,0 +1,1 @@
+bash: line 1: nonexistent_cmd_abc: command not found

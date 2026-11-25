@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "train.py", line 9, in <module>
+    x = [0] * 10**12
+MemoryError

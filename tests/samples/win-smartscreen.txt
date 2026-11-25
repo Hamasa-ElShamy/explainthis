@@ -1,0 +1,4 @@
+Windows protected your PC
+Microsoft Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk.
+App: setup.exe
+Publisher: Unknown publisher

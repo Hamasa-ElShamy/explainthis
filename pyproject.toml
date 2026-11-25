@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "explainthis"
+version = "0.1.0"
+description = "Explains error messages and confusing system warnings, and reads errors automatically from commands, logs, the clipboard and screenshots."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+explainthis = "explainthis.cli:main"
+
+[tool.setuptools]
+packages = ["explainthis"]
