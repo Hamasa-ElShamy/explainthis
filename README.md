@@ -54,7 +54,7 @@ explainthis --lang ar run -- python app.py     # Arabic output
 
 `image` and `screen` need the free `tesseract` program (`sudo apt install tesseract-ocr`, `brew install tesseract`, or the Windows installer). `screen` also needs Pillow (`pip install pillow`) or `scrot`/`grim`.
 
-## What it knows (25 messages)
+## What it knows (28 messages)
 
 Python: missing module, file not found, permission denied, KeyError, IndexError, None errors, TypeError, SyntaxError/IndentationError, division by zero, memory, pip "externally-managed-environment". Shell and network: command not found, connection refused, DNS, bad certificate, HTTP 401/403/404/429/5xx, timeout, port in use, disk full. Git: not a repository, push rejected, merge conflict. npm errors. Windows: SmartScreen, UAC prompt, missing DLL, access denied 0x80070005, turning off the firewall.
 
@@ -62,7 +62,7 @@ Each entry has a plain-language meaning, steps, and, where there is a dangerous 
 
 ## What it does NOT do (honest)
 
-- **It only explains messages it knows (25 kinds).** Anything else gets "I do not have a built-in explanation", the key line, where it happened, and a search suggestion. It does not guess and there is no AI model. A message that matches the wrong entry is possible: the first match wins, others are listed as "Also found".
+- **It only explains messages it knows (28 kinds).** Anything else gets "I do not have a built-in explanation", the key line, where it happened, and a search suggestion. It does not guess and there is no AI model. A message that matches the wrong entry is possible: the first match wins, others are listed as "Also found".
 - **It does not understand a screenshot.** It reads the text with OCR and matches it. A dialog that has no recognisable words (only icons) or poor OCR gets no explanation. There is no vision model.
 - No global shortcut, no click-and-drag region picker, no tray app. `screen` takes the whole screen (or `--region x1,y1,x2,y2`).
 - The Windows entries were checked against typed copies of the known messages, not on a Windows machine. Git, pip, disk, memory entries are typed from the known messages; Python, bash, network, npm and HTTP samples were captured from real runs (see `tests/samples`).
@@ -75,6 +75,6 @@ Each entry has a plain-language meaning, steps, and, where there is a dangerous 
 
 ## How it works (بالعربي)
 
-بتشغل أمرك من خلال `explainthis run` فبيعدي الناتج زي ما هو، ولو الأمر فشل بياخد النص ويدور على المكان (الملف والسطر والكود). بعدين بيطابق الرسالة على قاعدة معرفة مكتوبة يدوي (25 نوع رسالة) بتحتوي المعنى والخطوات وتحذير من الحل السريع الخطر ودرجة الخطورة. نفس الشيء بيحصل لو الخطأ جاي من pipe أو من ملف لوج بيتابعه أو من الـ clipboard أو من صورة بيقراها بالـ OCR. لو الرسالة مش معروفة بيقولك كده بصراحة ومش بيخمن. مش بينفذ أي حل بدالك.
+بتشغل أمرك من خلال `explainthis run` فبيعدي الناتج زي ما هو، ولو الأمر فشل بياخد النص ويدور على المكان (الملف والسطر والكود). بعدين بيطابق الرسالة على قاعدة معرفة مكتوبة يدوي (28 نوع رسالة) بتحتوي المعنى والخطوات وتحذير من الحل السريع الخطر ودرجة الخطورة. نفس الشيء بيحصل لو الخطأ جاي من pipe أو من ملف لوج بيتابعه أو من الـ clipboard أو من صورة بيقراها بالـ OCR. لو الرسالة مش معروفة بيقولك كده بصراحة ومش بيخمن. مش بينفذ أي حل بدالك.
 
 MIT License.

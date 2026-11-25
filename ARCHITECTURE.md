@@ -9,7 +9,7 @@ Pipeline: **source of text** (command output, pipe, log, clipboard, OCR of a scr
 
 **Design decisions**: no model, so every sentence traces to a hand-written entry; unknown means unknown; the tool only ever prints. It never executes a suggested step, never presses a button and never changes security settings.
 
-**Limits**: 25 message kinds; OCR text matching only; clipboard and screen capture untested here; Windows entries not run on Windows.
+**Limits**: 28 message kinds; OCR text matching only; clipboard and screen capture untested here; Windows entries not run on Windows.
 
 ## بالعربي
-المسار: مصدر النص (ناتج أمر، pipe، لوج، clipboard، OCR لصورة، النافذة) ثم تحديد المكان ثم مطابقة قاعدة المعرفة ثم العرض. `cli.py` فيه مصادر النص، `engine.py` فيه المطابقة وتحديد الملف والسطر، `kb.py` قاعدة المعرفة بالعربي والإنجليزي، `gui.py` نافذة محلية على 127.0.0.1 بـ token عشوائي. مفيش نموذج ذكاء اصطناعي: كل جملة ليها مدخل مكتوب يدوي. الأداة مش بتنفذ أي أمر مقترح ومش بتضغط أي زرار. الحدود: 25 رسالة بس، والـ OCR بيطابق كلام بس، و clipboard وscreen مش متجربين هنا.
+المسار: مصدر النص (ناتج أمر، pipe، لوج، clipboard، OCR لصورة، النافذة) ثم تحديد المكان ثم مطابقة قاعدة المعرفة ثم العرض. `cli.py` فيه مصادر النص، `engine.py` فيه المطابقة وتحديد الملف والسطر، `kb.py` قاعدة المعرفة بالعربي والإنجليزي، `gui.py` نافذة محلية على 127.0.0.1 بـ token عشوائي. مفيش نموذج ذكاء اصطناعي: كل جملة ليها مدخل مكتوب يدوي. الأداة مش بتنفذ أي أمر مقترح ومش بتضغط أي زرار. الحدود: 28 رسالة بس، والـ OCR بيطابق كلام بس، و clipboard وscreen مش متجربين هنا.
