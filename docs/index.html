@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Manrope:wght@400;500;700&amp;family=Readex+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23222'/%3E%3C/svg%3E"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Manrope:wght@400;500;700&amp;family=Readex+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>ExplainThis: For developers and students: run a command through ExplainThis and, when it fails, get a plain explanation of what the error means, what you can do, and which tempting shortcut is dangerous. No AI service involved.</title><meta content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically." name="description"/>
 <meta content="ExplainThis" property="og:title"/><meta content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically." property="og:description"/>
 <style>
@@ -78,12 +78,56 @@ html[dir=rtl] .q{font-family:var(--body)}
 .ok b{color:#4fd18b}.no b{color:#ff8f7e}
 html[dir=rtl] #install,html[dir=rtl] #install .card{direction:ltr;text-align:left}
 html[dir=rtl] *{letter-spacing:0!important;text-transform:none!important}
+
+/* redesign: error + sticky note */
+header.hero{padding:60px 0 54px;background:radial-gradient(520px 260px at 90% 10%,rgba(240,136,62,.18),transparent 70%),var(--bg)}
+.hero .wrap{max-width:1000px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.02;letter-spacing:-.025em;margin:0 0 14px;text-align:start}
+.hero h1 u{text-decoration:none;color:var(--acc)}
+.hero .tag{font-size:1.15rem;margin:0 0 22px;text-align:start;color:#b6c2cf}
+.stack{position:relative;min-height:330px}
+.err{background:#0a0e12;border:1px solid #3a2227;border-inline-start:4px solid #ff6b6b;border-radius:6px;padding:14px 16px;font:500 .8rem/1.55 'JetBrains Mono',ui-monospace,monospace;color:#ffb4b4;max-width:380px;overflow:hidden}
+.err span{color:#7e8a96}
+.note{position:absolute;inset-inline-start:12%;top:128px;width:min(92%,420px);background:#ffe9bf;color:#2b1c06;border-radius:3px;padding:18px 20px 16px;transform:rotate(-1.6deg);box-shadow:0 18px 30px rgba(0,0,0,.45);font-size:.92rem;line-height:1.5;transition:transform .35s var(--ease-spring)}
+.note:hover{transform:rotate(0) translateY(-4px)}
+.note:before{content:"";position:absolute;top:-10px;inset-inline-start:42%;width:72px;height:20px;background:rgba(240,136,62,.65);transform:rotate(2deg)}
+.note b{font-family:var(--head);font-size:1rem;display:block;margin-bottom:6px}
+.note ol{margin:6px 0 0;padding-inline-start:1.2rem}
+.risk{display:flex;align-items:center;gap:10px;margin-top:10px;font:700 .72rem 'Manrope',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.risk i{flex:1;height:8px;background:#e8c98f;border-radius:99px;position:relative;overflow:hidden}.risk i:after{content:"";position:absolute;inset:0 22% 0 0;background:#c2410c;border-radius:99px;transform-origin:left;animation:fill 1.2s 1s var(--ease-out) both}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.err{animation:rise .8s var(--ease-out) both}.note{animation:rise .9s .45s var(--ease-out) both}
+.hero .wrap>div:first-child>*{animation:rise var(--dur-s) var(--ease-out) both}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.note{inset-inline-start:4%}}
+@media (prefers-reduced-motion:reduce){.risk i:after{animation:none}}
+
+/* redesign: error + sticky note */
+header.hero{padding:60px 0 54px;background:radial-gradient(520px 260px at 90% 10%,rgba(240,136,62,.18),transparent 70%),var(--bg)}
+.hero .wrap{max-width:1000px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.02;letter-spacing:-.025em;margin:0 0 14px;text-align:start}
+.hero h1 u{text-decoration:none;color:var(--acc)}
+.hero .tag{font-size:1.15rem;margin:0 0 22px;text-align:start;color:#b6c2cf}
+.stack{position:relative;min-height:330px}
+.err{background:#0a0e12;border:1px solid #3a2227;border-inline-start:4px solid #ff6b6b;border-radius:6px;padding:14px 16px;font:500 .8rem/1.55 'JetBrains Mono',ui-monospace,monospace;color:#ffb4b4;max-width:380px;overflow:hidden}
+.err span{color:#7e8a96}
+.note{position:absolute;inset-inline-start:12%;top:128px;width:min(92%,420px);background:#ffe9bf;color:#2b1c06;border-radius:3px;padding:18px 20px 16px;transform:rotate(-1.6deg);box-shadow:0 18px 30px rgba(0,0,0,.45);font-size:.92rem;line-height:1.5;transition:transform .35s var(--ease-spring)}
+.note:hover{transform:rotate(0) translateY(-4px)}
+.note:before{content:"";position:absolute;top:-10px;inset-inline-start:42%;width:72px;height:20px;background:rgba(240,136,62,.65);transform:rotate(2deg)}
+.note b{font-family:var(--head);font-size:1rem;display:block;margin-bottom:6px}
+.note ol{margin:6px 0 0;padding-inline-start:1.2rem}
+.risk{display:flex;align-items:center;gap:10px;margin-top:10px;font:700 .72rem 'Manrope',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.risk i{flex:1;height:8px;background:#e8c98f;border-radius:99px;position:relative;overflow:hidden}.risk i:after{content:"";position:absolute;inset:0 22% 0 0;background:#c2410c;border-radius:99px;transform-origin:left;animation:fill 1.2s 1s var(--ease-out) both}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.err{animation:rise .8s var(--ease-out) both}.note{animation:rise .9s .45s var(--ease-out) both}
+.hero .wrap>div:first-child>*{animation:rise var(--dur-s) var(--ease-out) both}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.note{inset-inline-start:4%}}
+@media (prefers-reduced-motion:reduce){.risk i:after{animation:none}}
 </style></head><body>
-<header class="hero"><div class="wrap"><div><h1 data-ar="متبصّش على الخطأ بس. &lt;u&gt;افهمه.&lt;/u&gt;">Don't just look at the error. <u>Understand it.</u></h1><p class="tag" data-ar="ExplainThis بتقرا الخطأ بدالك، من أمر فشل أو سجل أو الحافظة أو صورة شاشة. بتقولك معناه إيه وحصل فين وإيه الخطر في الحل السريع المغري. من غير خدمة ذكاء اصطناعي، وعمرها ما بتنفّذ حل بدالك.">ExplainThis reads the error for you, from a failed command, a log, the clipboard or a screenshot. It tells you what it means, where it happened, and what is risky about the tempting shortcut. No AI service, and it never runs a fix for you.</p>
-<a class="btn" data-ar="شوف الكود على GitHub" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" data-ar="التثبيت" href="#install">Install</a>
-<p class="mut" data-ar="مفتوحة المصدر · رخصة MIT · إصدار تجريبي v0.1.0 · المثال ده ناتج حقيقي من المشروع" style="margin-top:16px">Open source · MIT license · early release v0.1.0 · example is real output from the repo</p></div>
-<div aria-label="Example: an error and its plain explanation" class="stack"><div class="err"><span>$ explainthis run -- python3 t1.py</span><br/>ModuleNotFoundError: No module named 'cv2'</div>
-<div class="note"><b>Python cannot find the module 'cv2'</b>Not installed in the Python that ran your script, or the name differs.<ol><li>Install it with the same Python: <code>python3 -m pip install opencv-python</code></li><li>The pip name can differ from the import name. Check the spelling on pypi.org first.</li></ol><div class="risk" style="display:none"></div></div></div></div></header>
+<header class="hero"><div class="wrap"><div><h1>Don&#x27;t just look at the error. <u>Understand it.</u></h1><p class="tag">ExplainThis reads the error for you, from a failed command, a log, the clipboard or a screenshot. It tells you what it means, where it happened, and what is risky about the tempting shortcut. No AI service, and it never runs a fix for you.</p>
+<a class="btn" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" href="#install">Install</a>
+<p class="mut" style="margin-top:16px">Open source &middot; MIT license &middot; early release v0.1.0 &middot; example is real output from the repo</p></div>
+<div class="stack" aria-label="Example: an error and its plain explanation"><div class="err"><span>$ explainthis run -- python3 t1.py</span><br>ModuleNotFoundError: No module named &#x27;cv2&#x27;</div>
+<div class="note"><b>Python cannot find the module &#x27;cv2&#x27;</b>Not installed in the Python that ran your script, or the name differs.<ol><li>Install it with the same Python: <code>python3 -m pip install opencv-python</code></li><li>The pip name can differ from the import name. Check the spelling on pypi.org first.</li></ol><div class="risk" style="display:none"></div></div></div></div></header>
 <main class="wrap">
 <section><div class="grid"><div class="card"><b data-ar="بتقرا الأخطاء بدالك">Reads errors for you</b><div class="mut" data-ar="من أمر فشل أو سجل أو الحافظة أو صورة شاشة.">From a failed command, a pipe, a log, the clipboard or a screenshot.</div></div><div class="card"><b data-ar="بتقول حصل فين">Says where</b><div class="mut" data-ar="الملف والسطر وسطر الكود من Python traceback.">File, line and the code line from a Python traceback.</div></div><div class="card"><b data-ar="بتشرح العاقبة">Explains the consequence</b><div class="mut" data-ar="إيه اللي هيحصل لو خدت الحل الخطر، مع درجة الخطورة.">What happens if you take the risky shortcut, with a risk level.</div></div><div class="card"><b data-ar="عربي وإنجليزي">Arabic and English</b><div class="mut" data-ar="شرح كامل بالعربي والإنجليزي.">Full explanations in both languages.</div></div><div class="card"><b data-ar="عمرها ما بتتصرف بدالك">Never acts for you</b><div class="mut" data-ar="مفيش أمر بيتنفّذ ومفيش زرار بيتداس.">No command is run, no button is clicked.</div></div></div></section>
 <section><h2 data-ar="بتعمل إيه">What it does</h2><p data-ar="شغّل الأمر عن طريق explainthis run وهي هتشرح الخطأ بس لو الأمر فشل: معناه إيه وحصل فين وتعمل إيه وإيه الخطر في الحل السريع. وتقدر كمان تتابع ملف سجل أو تقرا الحافظة أو تعمل OCR لصورة تحذير. عمرها ما بتنفّذ حل ولا بتدوس «سماح» بدالك، ومفيش ذكاء اصطناعي.">Run your command through explainthis run and it explains the error only if the command fails: what it means, where it happened, what you can do, and what is dangerous about the tempting shortcut. It can also follow a log file, read the clipboard or OCR a screenshot of a warning. It never runs a fix or clicks Allow for you, and no AI service is involved.</p></section>
