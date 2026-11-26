@@ -4,7 +4,6 @@
 
 Don't just look at an error. Understand it. ExplainThis explains error messages and confusing system warnings in plain language (English or Arabic), says what is risky about the tempting shortcut, and **reads the error for you automatically**: from a command that failed, a log file, a pipe, the clipboard, or a screenshot. It never runs a fix and never clicks "Allow" for you. No cloud, no AI service: it runs on your computer.
 
-بيشرح رسائل الأخطاء وتحذيرات النظام بلغة بسيطة (عربي أو إنجليزي)، وبيقولك إيه الخطر في الحل السريع، وبيقرا الخطأ تلقائياً من أمر فشل أو ملف لوج أو الـ clipboard أو صورة شاشة. مش بينفذ أي حل ومش بيدوس Allow بدالك.
 
 ## Worked examples
 
@@ -62,7 +61,7 @@ Python: missing module, file not found, permission denied, KeyError, IndexError,
 
 Each entry has a plain-language meaning, steps, and, where there is a dangerous shortcut, what would happen if you took it and a risk level.
 
-## What it does NOT do (honest)
+## Limitations
 
 - **It only explains messages it knows (28 kinds).** Anything else gets "I do not have a built-in explanation", the key line, where it happened, and a search suggestion. It does not guess and there is no AI model. A message that matches the wrong entry is possible: the first match wins, others are listed as "Also found".
 - **It does not understand a screenshot.** It reads the text with OCR and matches it. A dialog that has no recognisable words (only icons) or poor OCR gets no explanation. There is no vision model.
@@ -71,7 +70,7 @@ Each entry has a plain-language meaning, steps, and, where there is a dangerous 
 - It never runs or clicks anything. `run` only runs the command you gave it.
 - The explanations are general. They cannot see your machine, so "check X" is advice, not a diagnosis.
 
-## Similar tools (honest comparison)
+## Related tools
 
 Tools that explain terminal errors already exist, for example [errbuddy](https://github.com/sithija-jayasinghe/errbuddy) and [Errxplain](https://github.com/EliaGambalunga/Errxplain), mostly using an AI model. ExplainThis is rule-based and offline, so it handles only 28 known messages, but it covers Windows system warnings (SmartScreen, UAC), says what the risky shortcut would do, reads logs and screenshots, and answers in Arabic.
 
@@ -79,8 +78,6 @@ Tools that explain terminal errors already exist, for example [errbuddy](https:/
 
 [ARCHITECTURE.md](ARCHITECTURE.md), Arabic and English. 40 pytest tests: every knowledge entry has a sample and must be recognised, location extraction, Arabic output, run on failure and silence on success, log watching, screenshot OCR, the window with its token. Output: [`demo/test-output.txt`](demo/test-output.txt).
 
-## How it works (بالعربي)
+## How it works
 
-بتشغل أمرك من خلال `explainthis run` فبيعدي الناتج زي ما هو، ولو الأمر فشل بياخد النص ويدور على المكان (الملف والسطر والكود). بعدين بيطابق الرسالة على قاعدة معرفة مكتوبة يدوي (28 نوع رسالة) بتحتوي المعنى والخطوات وتحذير من الحل السريع الخطر ودرجة الخطورة. نفس الشيء بيحصل لو الخطأ جاي من pipe أو من ملف لوج بيتابعه أو من الـ clipboard أو من صورة بيقراها بالـ OCR. لو الرسالة مش معروفة بيقولك كده بصراحة ومش بيخمن. مش بينفذ أي حل بدالك.
-
-MIT License.
+You run your command through `explainthis run`, which passes the output through unchanged. If the command fails, ExplainThis takes the error text and looks for the location (file, line and error code). It then matches the message against a hand-written knowledge base (28 message types) that holds the meaning, the steps to take, a warning about the risky shortcut, and a risk level. The same happens when the error comes from a pipe, a log file it follows, the clipboard, or an image read with OCR. If a message is unknown, it says so instead of guessing. It never runs a fix for you.
