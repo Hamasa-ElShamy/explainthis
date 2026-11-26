@@ -1,6 +1,8 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;700&family=Readex+Pro:wght@400;600;700&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ExplainThis: For developers and students: run a command through ExplainThis and, when it fails, get a plain explanation of what the error means, what you can do, and which tempting shortcut is dangerous. No AI service involved.</title><meta name="description" content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically.">
-<meta property="og:title" content="ExplainThis"><meta property="og:description" content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically.">
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Manrope:wght@400;500;700&amp;family=Readex+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>ExplainThis: For developers and students: run a command through ExplainThis and, when it fails, get a plain explanation of what the error means, what you can do, and which tempting shortcut is dangerous. No AI service involved.</title><meta content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically." name="description"/>
+<meta content="ExplainThis" property="og:title"/><meta content="Explains errors and confusing warnings in plain Arabic or English, and reads them for you automatically." property="og:description"/>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font:16px/1.65 var(--body);background:var(--bg);color:var(--fg)}
@@ -67,24 +69,32 @@ header.hero{padding:60px 0 54px;background:radial-gradient(520px 260px at 90% 10
 .hero .wrap>div:first-child>*{animation:rise var(--dur-s) var(--ease-out) both}
 @media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.note{inset-inline-start:4%}}
 @media (prefers-reduced-motion:reduce){.risk i:after{animation:none}}
-</style></head><body>
-<header class="hero"><div class="wrap"><div><h1>Don&#x27;t just look at the error. <u>Understand it.</u></h1><p class="tag">ExplainThis reads the error for you, from a failed command, a log, the clipboard or a screenshot. It tells you what it means, where it happened, and what is risky about the tempting shortcut. No AI service, and it never runs a fix for you.</p>
-<a class="btn" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" href="#install">Install</a>
-<p class="mut" style="margin-top:16px">Open source &middot; MIT license &middot; early release v0.1.0 &middot; example is real output from the repo</p></div>
-<div class="stack" aria-label="Example: an error and its plain explanation"><div class="err"><span>$ explainthis run -- python3 t1.py</span><br>ModuleNotFoundError: No module named &#x27;cv2&#x27;</div>
-<div class="note"><b>Python cannot find the module &#x27;cv2&#x27;</b>Not installed in the Python that ran your script, or the name differs.<ol><li>Install it with the same Python: <code>python3 -m pip install opencv-python</code></li><li>The pip name can differ from the import name. Check the spelling on pypi.org first.</li></ol><div class="risk" style="display:none"></div></div></div></div></header>
-<main class="wrap">
-<section><div class="grid"><div class="card"><b>Reads errors for you</b><div class="mut">From a failed command, a pipe, a log, the clipboard or a screenshot.</div></div><div class="card"><b>Says where</b><div class="mut">File, line and the code line from a Python traceback.</div></div><div class="card"><b>Explains the consequence</b><div class="mut">What happens if you take the risky shortcut, with a risk level.</div></div><div class="card"><b>Arabic and English</b><div class="mut">Full explanations in both languages.</div></div><div class="card"><b>Never acts for you</b><div class="mut">No command is run, no button is clicked.</div></div></div></section>
-<section><h2>What it does</h2><p>Run your command through explainthis run and it explains the error only if the command fails: what it means, where it happened, what you can do, and what is dangerous about the tempting shortcut. It can also follow a log file, read the clipboard or OCR a screenshot of a warning. It never runs a fix or clicks Allow for you, and no AI service is involved.</p></section>
 
-<section><h2>Examples</h2><h3>Real output (python run, Windows warning text, Arabic)</h3><pre><code>$ explainthis run -- python3 /tmp/t1.py
+/* qa round 1: tokens for status colors, touch targets, RTL demo panels */
+footer a{display:inline-block;padding:14px 4px;min-height:44px;box-sizing:border-box}
+pre,code,.err,.q,.finder,.results,.redcard,.scan,.stack,.proof,.os pre{direction:ltr;text-align:left;unicode-bidi:isolate}
+pre,code,.err,.q{font-family:ui-monospace,Menlo,Consolas,monospace}
+html[dir=rtl] .q{font-family:var(--body)}
+.ok b{color:#4fd18b}.no b{color:#ff8f7e}
+html[dir=rtl] #install,html[dir=rtl] #install .card{direction:ltr;text-align:left}
+html[dir=rtl] *{letter-spacing:0!important;text-transform:none!important}
+</style></head><body>
+<header class="hero"><div class="wrap"><div><h1 data-ar="متبصّش على الخطأ بس. &lt;u&gt;افهمه.&lt;/u&gt;">Don't just look at the error. <u>Understand it.</u></h1><p class="tag" data-ar="ExplainThis بتقرا الخطأ بدالك، من أمر فشل أو سجل أو الحافظة أو صورة شاشة. بتقولك معناه إيه وحصل فين وإيه الخطر في الحل السريع المغري. من غير خدمة ذكاء اصطناعي، وعمرها ما بتنفّذ حل بدالك.">ExplainThis reads the error for you, from a failed command, a log, the clipboard or a screenshot. It tells you what it means, where it happened, and what is risky about the tempting shortcut. No AI service, and it never runs a fix for you.</p>
+<a class="btn" data-ar="شوف الكود على GitHub" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" data-ar="التثبيت" href="#install">Install</a>
+<p class="mut" data-ar="مفتوحة المصدر · رخصة MIT · إصدار تجريبي v0.1.0 · المثال ده ناتج حقيقي من المشروع" style="margin-top:16px">Open source · MIT license · early release v0.1.0 · example is real output from the repo</p></div>
+<div aria-label="Example: an error and its plain explanation" class="stack"><div class="err"><span>$ explainthis run -- python3 t1.py</span><br/>ModuleNotFoundError: No module named 'cv2'</div>
+<div class="note"><b>Python cannot find the module 'cv2'</b>Not installed in the Python that ran your script, or the name differs.<ol><li>Install it with the same Python: <code>python3 -m pip install opencv-python</code></li><li>The pip name can differ from the import name. Check the spelling on pypi.org first.</li></ol><div class="risk" style="display:none"></div></div></div></div></header>
+<main class="wrap">
+<section><div class="grid"><div class="card"><b data-ar="بتقرا الأخطاء بدالك">Reads errors for you</b><div class="mut" data-ar="من أمر فشل أو سجل أو الحافظة أو صورة شاشة.">From a failed command, a pipe, a log, the clipboard or a screenshot.</div></div><div class="card"><b data-ar="بتقول حصل فين">Says where</b><div class="mut" data-ar="الملف والسطر وسطر الكود من Python traceback.">File, line and the code line from a Python traceback.</div></div><div class="card"><b data-ar="بتشرح العاقبة">Explains the consequence</b><div class="mut" data-ar="إيه اللي هيحصل لو خدت الحل الخطر، مع درجة الخطورة.">What happens if you take the risky shortcut, with a risk level.</div></div><div class="card"><b data-ar="عربي وإنجليزي">Arabic and English</b><div class="mut" data-ar="شرح كامل بالعربي والإنجليزي.">Full explanations in both languages.</div></div><div class="card"><b data-ar="عمرها ما بتتصرف بدالك">Never acts for you</b><div class="mut" data-ar="مفيش أمر بيتنفّذ ومفيش زرار بيتداس.">No command is run, no button is clicked.</div></div></div></section>
+<section><h2 data-ar="بتعمل إيه">What it does</h2><p data-ar="شغّل الأمر عن طريق explainthis run وهي هتشرح الخطأ بس لو الأمر فشل: معناه إيه وحصل فين وتعمل إيه وإيه الخطر في الحل السريع. وتقدر كمان تتابع ملف سجل أو تقرا الحافظة أو تعمل OCR لصورة تحذير. عمرها ما بتنفّذ حل ولا بتدوس «سماح» بدالك، ومفيش ذكاء اصطناعي.">Run your command through explainthis run and it explains the error only if the command fails: what it means, where it happened, what you can do, and what is dangerous about the tempting shortcut. It can also follow a log file, read the clipboard or OCR a screenshot of a warning. It never runs a fix or clicks Allow for you, and no AI service is involved.</p></section>
+<section><h2 data-ar="أمثلة">Examples</h2><h3 data-ar="ناتج حقيقي (تشغيل Python ونص تحذير Windows وعربي)">Real output (python run, Windows warning text, Arabic)</h3><pre><code>$ explainthis run -- python3 /tmp/t1.py
 Traceback (most recent call last):
-  File &quot;/tmp/t1.py&quot;, line 1, in &lt;module&gt;
+  File "/tmp/t1.py", line 1, in &lt;module&gt;
     import cv2
-ModuleNotFoundError: No module named &#x27;cv2&#x27;
+ModuleNotFoundError: No module named 'cv2'
 
 --- ExplainThis: the command exited with code 1 ---
-What it says: Python cannot find the module &#x27;cv2&#x27;
+What it says: Python cannot find the module 'cv2'
 Where: /tmp/t1.py:1 (&lt;module&gt;)
 Code: import cv2
 Meaning: The module is not installed in the Python that ran your script, or its name is spelled differently.
@@ -96,16 +106,15 @@ What you can do:
 
 $ cat tests/samples/win-smartscreen.txt | explainthis
 What it says: Windows SmartScreen blocked an unrecognised app
-Meaning: Windows cannot check this program&#x27;s reputation. That is not proof of a virus: new or small programs often show this. It also means Windows has no evidence the program is safe.
+Meaning: Windows cannot check this program's reputation. That is not proof of a virus: new or small programs often show this. It also means Windows has no evidence the program is safe.
 What you can do:
   1. Check where you got it. Prefer the official site of the program.
-  2. Look at the file&#x27;s digital signature: right-click the file, Properties, Digital Signatures. An unsigned file is not proof of danger, but ask whether you trust the source.
-  3. Compare the file&#x27;s SHA-256 (`Get-FileHash FILE` in PowerShell) with the one on the official page, if they publish it.
+  2. Look at the file's digital signature: right-click the file, Properties, Digital Signatures. An unsigned file is not proof of danger, but ask whether you trust the source.
+  3. Compare the file's SHA-256 (`Get-FileHash FILE` in PowerShell) with the one on the official page, if they publish it.
   4. Scan it with Microsoft Defender, or upload it to virustotal.com.
-If you take the tempting shortcut: &#x27;More info&#x27; then &#x27;Run anyway&#x27; lets the program start with your user&#x27;s permissions. If it is malware it can read your files and saved passwords. ExplainThis never clicks it for you.
+If you take the tempting shortcut: 'More info' then 'Run anyway' lets the program start with your user's permissions. If it is malware it can read your files and saved passwords. ExplainThis never clicks it for you.
 Risk: High
 (ExplainThis never runs a fix or clicks anything for you.)</code></pre></section>
-
 <section id="install"><h2>Install</h2><div class="os">
 <div class="card"><h3>Windows</h3><div class="mut">Install Python 3.9+ from python.org (tick "Add python.exe to PATH"), then in PowerShell:</div>
 <pre><code>py -m pip install git+https://github.com/mohamed-elshamy-ai/explainthis
@@ -121,9 +130,9 @@ pip install .
 explainthis run -- python app.py</code></pre><div><span class="ok"><b>Tested.</b></span> Tested on Linux (Python 3.10). Screenshots need tesseract.</div></div>
 <div class="card"><h3>Android</h3><div><span class="no"><b>Not available.</b></span> Not available.</div></div>
 </div></section>
-<section class="how-section"><h2><span class="lang-en">How it works</span><span class="lang-ar" hidden>إزاي بيشتغل</span></h2><div class="langtoggle" role="group" aria-label="Language / اللغة"><button type="button" data-lang="en" aria-pressed="true">English</button><button type="button" data-lang="ar" aria-pressed="false">العربية</button></div><div class="lang-en"><ol><li>The text comes from the command, a pipe, a log, the clipboard or OCR of a screenshot.</li><li>It finds where it happened (file, line, code).</li><li>It matches the message against 28 hand-written entries, filling in details like the module name.</li><li>It prints meaning, steps, the consequence of the risky shortcut and a risk level, in English or Arabic.</li><li>If the message is unknown it says so and shows the key line instead of guessing.</li></ol>
+<section class="how-section"><h2><span class="lang-en">How it works</span><span class="lang-ar" hidden="">إزاي بيشتغل</span></h2><div aria-label="Language / اللغة" class="langtoggle" role="group"><button aria-pressed="true" data-lang="en" type="button">English</button><button aria-pressed="false" data-lang="ar" type="button">العربية</button></div><div class="lang-en"><ol><li>The text comes from the command, a pipe, a log, the clipboard or OCR of a screenshot.</li><li>It finds where it happened (file, line, code).</li><li>It matches the message against 28 hand-written entries, filling in details like the module name.</li><li>It prints meaning, steps, the consequence of the risky shortcut and a risk level, in English or Arabic.</li><li>If the message is unknown it says so and shows the key line instead of guessing.</li></ol>
 </div><div class="card lang-ar" dir="rtl" lang="ar" style="text-align:start"><b>الشرح بالعربي</b><p>بتشغل أمرك من خلال explainthis run ولو فشل بياخد الخطأ تلقائياً. بيحدد المكان (الملف والسطر)، وبيطابق الرسالة على 28 مدخل مكتوب يدوي وبيشرح المعنى والخطوات وخطر الحل السريع. نفس الشيء مع لوج أو clipboard أو صورة شاشة (OCR). لو الرسالة مش معروفة بيقولك كده ومش بيخمن. مش بينفذ حاجة بدالك.</p></div></section>
-<section><h2>Honest limits</h2><div class="card warn"><ul><li>Only 28 kinds of message are known. Anything else gets an honest &#x27;no built-in explanation&#x27;. No AI model.</li><li>Screenshots are read with OCR text only. It does not understand pictures or icons.</li><li>No global shortcut, region picker or tray app yet. Clipboard and screen capture are untested.</li><li>Windows entries were not run on a Windows machine.</li><li>It gives general advice. It cannot see your machine.</li></ul></div></section>
+<section><h2 data-ar="حدودها بصراحة">Honest limits</h2><div class="card warn"><ul><li data-ar="28 نوع رسالة بس هي المعروفة. أي حاجة تانية بتاخد رد صريح: «مفيش شرح جاهز». ومفيش نموذج ذكاء اصطناعي.">Only 28 kinds of message are known. Anything else gets an honest 'no built-in explanation'. No AI model.</li><li data-ar="صور الشاشة بتتقرا بنص الـ OCR بس. مش بتفهم الصور ولا الأيقونات.">Screenshots are read with OCR text only. It does not understand pictures or icons.</li><li data-ar="مفيش اختصار عام ولا اختيار منطقة ولا تطبيق في الشريط لسه. الحافظة والتقاط الشاشة متجرّبوش.">No global shortcut, region picker or tray app yet. Clipboard and screen capture are untested.</li><li data-ar="مدخلات Windows متشغّلتش على جهاز Windows.">Windows entries were not run on a Windows machine.</li><li data-ar="بتدّي نصيحة عامة. مش بتشوف جهازك.">It gives general advice. It cannot see your machine.</li></ul></div></section>
 </main>
 <footer>Built by <a href="https://github.com/mohamed-elshamy-ai">Mohamed Elshamy</a>. Issues and pull requests are welcome on <a href="https://github.com/mohamed-elshamy-ai/explainthis">GitHub</a>.</footer>
 <script>
@@ -134,6 +143,8 @@ explainthis run -- python app.py</code></pre><div><span class="ok"><b>Tested.</b
   document.querySelectorAll('.lang-ar').forEach(function(e){e.hidden=lang!=='ar'});
   document.querySelectorAll('.langtoggle button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false')});
   document.querySelectorAll('.how-section').forEach(function(s){s.dir=lang==='ar'?'rtl':'ltr'});
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-ar]').forEach(function(e){if(e.dataset.en===undefined)e.dataset.en=e.innerHTML;e.innerHTML=lang==='ar'?e.dataset.ar:e.dataset.en});
   try{localStorage.setItem(KEY,lang)}catch(e){}
  }
  var def=(navigator.language||'en').toLowerCase().indexOf('ar')===0?'ar':'en';
