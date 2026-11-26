@@ -9,6 +9,7 @@ a{color:var(--acc)}code,pre{font-family:ui-monospace,Menlo,Consolas,monospace}
 pre{background:var(--code);color:var(--codefg);border:1px solid var(--line);border-radius:var(--r);padding:16px;overflow:auto;font-size:.86rem;line-height:1.5}
 .btn{display:inline-block;padding:11px 22px;border-radius:var(--r);background:var(--acc);color:var(--accfg);font-weight:600;text-decoration:none;margin:4px 8px 4px 0}
 .btn.alt{background:transparent;color:var(--fg);border:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
 section{padding:26px 0}h2{font-family:var(--head);font-size:1.5rem;margin:0 0 14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;margin:10px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.grid .card{margin:0}
@@ -29,8 +30,9 @@ h1{font-size:3.1rem;margin:0 0 8px;color:var(--acc)}.tag{color:var(--mut);font-s
 <a class="btn" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" href="#install">Install</a>
 <p class="mut" style="margin-top:16px">Open source &middot; MIT license &middot; early release v0.1.0</p></div></header>
 <main class="wrap">
-<section><h2>What it does</h2><p>Run your command through explainthis run and it explains the error only if the command fails: what it means, where it happened, what you can do, and what is dangerous about the tempting shortcut. It can also follow a log file, read the clipboard or OCR a screenshot of a warning. It never runs a fix or clicks Allow for you, and no AI service is involved.</p></section>
 <section><div class="grid"><div class="card"><b>Reads errors for you</b><div class="mut">From a failed command, a pipe, a log, the clipboard or a screenshot.</div></div><div class="card"><b>Says where</b><div class="mut">File, line and the code line from a Python traceback.</div></div><div class="card"><b>Explains the consequence</b><div class="mut">What happens if you take the risky shortcut, with a risk level.</div></div><div class="card"><b>Arabic and English</b><div class="mut">Full explanations in both languages.</div></div><div class="card"><b>Never acts for you</b><div class="mut">No command is run, no button is clicked.</div></div></div></section>
+<section><h2>What it does</h2><p>Run your command through explainthis run and it explains the error only if the command fails: what it means, where it happened, what you can do, and what is dangerous about the tempting shortcut. It can also follow a log file, read the clipboard or OCR a screenshot of a warning. It never runs a fix or clicks Allow for you, and no AI service is involved.</p></section>
+
 <section><h2>Examples</h2><h3>Real output (python run, Windows warning text, Arabic)</h3><pre><code>$ explainthis run -- python3 /tmp/t1.py
 Traceback (most recent call last):
   File &quot;/tmp/t1.py&quot;, line 1, in &lt;module&gt;
@@ -76,7 +78,7 @@ explainthis run -- python app.py</code></pre><div><span class="ok"><b>Tested.</b
 <div class="card"><h3>Android</h3><div><span class="no"><b>Not available.</b></span> Not available.</div></div>
 </div></section>
 <section><h2>How it works</h2><ol><li>The text comes from the command, a pipe, a log, the clipboard or OCR of a screenshot.</li><li>It finds where it happened (file, line, code).</li><li>It matches the message against 28 hand-written entries, filling in details like the module name.</li><li>It prints meaning, steps, the consequence of the risky shortcut and a risk level, in English or Arabic.</li><li>If the message is unknown it says so and shows the key line instead of guessing.</li></ol>
-<div class="card rtl"><b>الشرح بالعربي</b><p>بتشغل أمرك من خلال explainthis run ولو فشل بياخد الخطأ تلقائياً. بيحدد المكان (الملف والسطر)، وبيطابق الرسالة على 28 مدخل مكتوب يدوي وبيشرح المعنى والخطوات وخطر الحل السريع. نفس الشيء مع لوج أو clipboard أو صورة شاشة (OCR). لو الرسالة مش معروفة بيقولك كده ومش بيخمن. مش بينفذ حاجة بدالك.</p></div></section>
+<div class="card" dir="rtl" lang="ar" style="text-align:start"><b>الشرح بالعربي</b><p>بتشغل أمرك من خلال explainthis run ولو فشل بياخد الخطأ تلقائياً. بيحدد المكان (الملف والسطر)، وبيطابق الرسالة على 28 مدخل مكتوب يدوي وبيشرح المعنى والخطوات وخطر الحل السريع. نفس الشيء مع لوج أو clipboard أو صورة شاشة (OCR). لو الرسالة مش معروفة بيقولك كده ومش بيخمن. مش بينفذ حاجة بدالك.</p></div></section>
 <section><h2>Honest limits</h2><div class="card warn"><ul><li>Only 28 kinds of message are known. Anything else gets an honest &#x27;no built-in explanation&#x27;. No AI model.</li><li>Screenshots are read with OCR text only. It does not understand pictures or icons.</li><li>No global shortcut, region picker or tray app yet. Clipboard and screen capture are untested.</li><li>Windows entries were not run on a Windows machine.</li><li>It gives general advice. It cannot see your machine.</li></ul></div></section>
 </main>
 <footer><img src="author.jpg" alt="Mohamed Elshamy" width="64" height="64">Built by <a href="https://github.com/mohamed-elshamy-ai">Mohamed Elshamy</a>. Issues and pull requests are welcome on <a href="https://github.com/mohamed-elshamy-ai/explainthis">GitHub</a>.</footer>
