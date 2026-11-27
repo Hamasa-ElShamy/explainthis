@@ -51,7 +51,7 @@ explainthis --lang ar run -- python app.py     # Arabic output
 | System | Status |
 |---|---|
 | Linux | Tested (Python 3.10): `run`, pipe, `watch`, `text`, `image` (with tesseract), the window. |
-| Windows / macOS | Should work, not tested. |
+| Windows / macOS | Should work, not tested by a person. On a macOS CI runner the test of the local window (`explainthis gui`) failed and I did not find why, so treat `gui` on macOS as unverified. The command-line parts passed there. |
 | Not tested anywhere yet | `clipboard` and `screen` (this machine has no display or clipboard tool). |
 | Android | Not available. |
 
