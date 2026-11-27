@@ -1,6 +1,6 @@
 # ExplainThis
 
-[![tests](https://github.com/Hamasa-ElShamy/explainthis/actions/workflows/tests.yml/badge.svg)](https://github.com/Hamasa-ElShamy/explainthis/actions/workflows/tests.yml) ![tests: 49 passing](https://img.shields.io/badge/tests-49%20passing-brightgreen) ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
+[![tests](https://github.com/hamasa-lshmn/explainthis/actions/workflows/tests.yml/badge.svg)](https://github.com/hamasa-lshmn/explainthis/actions/workflows/tests.yml) ![tests: 49 passing](https://img.shields.io/badge/tests-49%20passing-brightgreen) ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
 
 Don't just look at an error. Understand it. ExplainThis explains error messages and confusing system warnings in plain language (English or Arabic), says what is risky about the tempting shortcut, and **reads the error for you automatically**: from a command that failed, a log file, a pipe, the clipboard, or a screenshot. It never runs a fix and never clicks "Allow" for you. No cloud, no AI service: it runs on your computer.
 
@@ -31,14 +31,14 @@ Risk: High
 
 The small window: [`demo/gui-explain.png`](demo/gui-explain.png) (a real Chrome run of `tests/e2e_gui.py`).
 
-**Try it without installing:** [browser demo](https://hamasa-elshamy.github.io/explainthis/demo.html). Paste an error message; it runs the same Python in your browser via Pyodide (about 10 MB the first time, loaded from jsDelivr). Nothing you paste is uploaded. Text only: screenshot, clipboard, `run` and `watch` need the installed tool.
+**Try it without installing:** [browser demo](https://hamasa-lshmn.github.io/explainthis/demo.html). Paste an error message; it runs the same Python in your browser via Pyodide (about 10 MB the first time, loaded from jsDelivr). Nothing you paste is uploaded. Text only: screenshot, clipboard, `run` and `watch` need the installed tool.
 
-**No Python?** Download a standalone file from [Releases](https://github.com/Hamasa-ElShamy/explainthis/releases/tag/v0.2.0) (Linux, Windows, macOS Apple-silicon). They are **not code-signed**: Windows SmartScreen and macOS Gatekeeper will probably warn, and you can compare the file with `SHA256SUMS.txt`. Built by GitHub Actions from the tag; only the Linux file was run by a person (it printed correct output on the demo). The Windows and macOS files passed an automatic `--help` check only.
+**No Python?** Download a standalone file from [Releases](https://github.com/hamasa-lshmn/explainthis/releases/tag/v0.2.0) (Linux, Windows, macOS Apple-silicon). They are **not code-signed**: Windows SmartScreen and macOS Gatekeeper will probably warn, and you can compare the file with `SHA256SUMS.txt`. Built by GitHub Actions from the tag; only the Linux file was run by a person (it printed correct output on the demo). The Windows and macOS files passed an automatic `--help` check only.
 
 ## Install and use
 
 ```
-git clone https://github.com/Hamasa-ElShamy/explainthis && cd explainthis
+git clone https://github.com/hamasa-lshmn/explainthis && cd explainthis
 pip install .
 explainthis run -- python app.py      # runs it, explains automatically if it fails
 python app.py 2>&1 | explainthis      # same idea with a pipe
