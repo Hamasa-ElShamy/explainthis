@@ -87,7 +87,10 @@ def test_gui_requires_token_and_explains():
     buf = io.StringIO()
     def run():
         with contextlib.redirect_stdout(buf): gui.serve(open_browser=False)
-    threading.Thread(target=run, daemon=True).start(); time.sleep(0.5)
+    threading.Thread(target=run, daemon=True).start()
+    for _ in range(100):
+        if "?t=" in buf.getvalue(): break
+        time.sleep(0.1)
     url = re.search(r"http://127.0.0.1:(\d+)/\?t=(\S+)", buf.getvalue()); port, tok = int(url[1]), url[2]
     c = http.client.HTTPConnection("127.0.0.1", port); c.request("GET", "/"); assert c.getresponse().status == 403
     c = http.client.HTTPConnection("127.0.0.1", port); c.request("POST", f"/explain?t={tok}", json.dumps({"text": "ZeroDivisionError: division by zero"}))
