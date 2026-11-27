@@ -31,6 +31,8 @@ Risk: High
 
 The small window: [`demo/gui-explain.png`](demo/gui-explain.png) (a real Chrome run of `tests/e2e_gui.py`).
 
+**Try it without installing:** [browser demo](https://mohamed-elshamy-ai.github.io/explainthis/demo.html). Paste an error message; it runs the same Python in your browser via Pyodide (about 10 MB the first time, loaded from jsDelivr). Nothing you paste is uploaded. Text only: screenshot, clipboard, `run` and `watch` need the installed tool.
+
 ## Install and use
 
 ```
