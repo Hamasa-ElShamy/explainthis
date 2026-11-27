@@ -6,22 +6,22 @@ Read this before changing the site's UI. Do not introduce a new direction; exten
 
 An error with a sticky note beside it: what it means, where it happened, and what the shortcut risks.
 
-Theme: dark (deliberate exception to the light-pages rule, pending the user's decision).
+Theme: light (converted from dark on the user's instruction to follow the light-pages rule).
 
 ## Color tokens
 
 | Token | Value | Role |
 |---|---|---|
-| `--bg` | `#0f1419` | page background |
-| `--fg` | `#e6edf3` | body text |
-| `--mut` | `#8b98a5` | secondary text (AA on bg) |
-| `--card` | `#161c24` | card and panel surface |
-| `--line` | `#2a323c` | borders and dividers |
-| `--acc` | `#f0883e` | primary action, links, focus ring |
-| `--accfg` | `#1a1005` | text on accent |
-| `--code` | `#0a0e12` | code block background |
+| `--bg` | `#ecedea` | page background |
+| `--fg` | `#1a1d21` | body text |
+| `--mut` | `#4d555e` | secondary text (AA on bg) |
+| `--card` | `#ffffff` | card and panel surface |
+| `--line` | `#d2d5d0` | borders and dividers |
+| `--acc` | `#b13a09` | primary action, links, focus ring |
+| `--accfg` | `#ffffff` | text on accent |
+| `--code` | `#1a1d21` | code block background |
 | `--codefg` | `#ffd9b8` | code block text |
-| `--warn` | `#f0883e` | warning border and limits |
+| `--warn` | `#b45309` | warning border and limits |
 
 Contrast: every text node on the page is checked against WCAG AA (4.5:1, 3:1 for large text) with a script in the repo owner's QA harness. Keep it passing when you change a color.
 
@@ -39,7 +39,7 @@ Font sizes in use: `.86rem`, `1.5rem`, `1rem`, `.9rem`, `.72rem`, `clamp(2.1rem,
 
 - Spacing values in use: `2px`, `4px`, `6px`, `8px`, `10px`, `11px`, `12px`, `14px`, `16px`, `18px`, `26px`, `40px`. Prefer these; do not add new ones.
 - Radius: `--r` (10px). Use the token, not literals.
-- Elevation: `0 18px 30px rgba(0,0,0,.45)`
+- Elevation: `0 14px 22px rgba(0,0,0,.2)!important`, `0 16px 26px -14px rgba(0,0,0,.5)`, `0 18px 30px rgba(0,0,0,.45)`
 
 ## Motion
 
@@ -88,5 +88,5 @@ Examples from the site:
 
 ## Known hard-coded values (should become tokens)
 
-These literal colors appear in the CSS outside `:root`: `#2b1c06`, `#2e9e5b`, `#3a2227`, `#4fd18b`, `#7e8a96`, `#b6c2cf`, `#c0392b`, `#c2410c`, `#e8c98f`, `#ff6b6b`, `#ff8f7e`, `#ffb4b4`, `#ffe9bf`.
+These literal colors appear in the CSS outside `:root`: `#0a0e12`, `#17703f`, `#2b1c06`, `#2e9e5b`, `#363d45`, `#3a2227`, `#7e8a96`, `#a8281b`, `#b6c2cf`, `#c0392b`, `#c2410c`, `#e8c98f`, `#ff6b6b`, `#ffb4b4`, `#ffe9bf`.
 Also: status colors in `.ok b` and `.no b`, and several literal pixel sizes in component CSS. Move them into tokens next time that block is touched.

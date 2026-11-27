@@ -24,7 +24,7 @@ footer img{border-radius:50%;border:2px solid var(--line);display:block;margin:0
 .badge{display:inline-block;font-size:.72rem;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mut);margin-left:6px;vertical-align:middle}
 .ok{color:#2e9e5b}.no{color:#c0392b}
 
-:root{--bg:#0f1419;--fg:#e6edf3;--mut:#8b98a5;--card:#161c24;--line:#2a323c;--acc:#f0883e;--accfg:#1a1005;--code:#0a0e12;--codefg:#ffd9b8;--warn:#f0883e;--arabic:'Readex Pro',sans-serif;--r:10px;--body:'Manrope','Readex Pro',system-ui,sans-serif;--head:'Bricolage Grotesque','Readex Pro',system-ui,sans-serif}
+:root{--bg:#ecedea;--fg:#1a1d21;--mut:#4d555e;--card:#ffffff;--line:#d2d5d0;--acc:#b13a09;--accfg:#ffffff;--code:#1a1d21;--codefg:#ffd9b8;--warn:#b45309;--arabic:'Readex Pro',sans-serif;--r:10px;--body:'Manrope','Readex Pro',system-ui,sans-serif;--head:'Bricolage Grotesque','Readex Pro',system-ui,sans-serif}
 header.hero{padding:76px 0 46px;border-bottom:1px solid var(--line);background:radial-gradient(600px 240px at 20% 0,#f0883e33,transparent)}
 h1{font-family:var(--head);font-size:clamp(2.1rem,8.5vw,3.1rem);overflow-wrap:break-word;margin:0 0 8px;color:var(--acc)}.tag{color:var(--mut);font-size:1.2rem;max-width:620px}
 .hero .wrap{text-align:left}
@@ -75,7 +75,7 @@ footer a{display:inline-block;padding:14px 4px;min-height:44px;box-sizing:border
 pre,code,.err,.q,.finder,.results,.redcard,.scan,.stack,.proof,.os pre{direction:ltr;text-align:left;unicode-bidi:isolate}
 pre,code,.err,.q{font-family:ui-monospace,Menlo,Consolas,monospace}
 html[dir=rtl] .q{font-family:var(--body)}
-.ok b{color:#4fd18b}.no b{color:#ff8f7e}
+.ok b{color:#17703f}.no b{color:#a8281b}
 html[dir=rtl] #install,html[dir=rtl] #install .card{direction:ltr;text-align:left}
 html[dir=rtl] *{letter-spacing:0!important;text-transform:none!important}
 
@@ -122,6 +122,14 @@ header.hero{padding:60px 0 54px;background:radial-gradient(520px 260px at 90% 10
 .hero .wrap>div:first-child>*{animation:rise var(--dur-s) var(--ease-out) both}
 @media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.note{inset-inline-start:4%}}
 @media (prefers-reduced-motion:reduce){.risk i:after{animation:none}}
+
+/* light conversion: terminal and sticky note on a paper desk */
+header.hero{background:radial-gradient(520px 260px at 90% 10%,rgba(194,65,12,.10),transparent 70%),var(--bg)!important}
+.hero .tag{color:#363d45!important}
+.err{box-shadow:0 16px 26px -14px rgba(0,0,0,.5)}
+.note{box-shadow:0 14px 22px rgba(0,0,0,.2)!important}
+.note:before{background:rgba(194,65,12,.55)!important}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style></head><body>
 <header class="hero"><div class="wrap"><div><h1>Don&#x27;t just look at the error. <u>Understand it.</u></h1><p class="tag">ExplainThis reads the error for you, from a failed command, a log, the clipboard or a screenshot. It tells you what it means, where it happened, and what is risky about the tempting shortcut. No AI service, and it never runs a fix for you.</p>
 <a class="btn" href="https://github.com/mohamed-elshamy-ai/explainthis">View on GitHub</a><a class="btn alt" href="#install">Install</a>
