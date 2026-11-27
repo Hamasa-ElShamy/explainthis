@@ -42,7 +42,8 @@ def run_cmd(cmd, lang):
     try:
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors="replace")
     except OSError as e:
-        print(f"explainthis: cannot run '{cmd[0]}': {e.strerror or e}. Check the spelling, and that the program is installed and on your PATH." if lang == "en" else f"explainthis: مش قادر أشغل '{cmd[0]}': {e.strerror or e}. راجع الإملاء واتأكد إن البرنامج متسطب.", file=sys.stderr)
+        why = "command not found" if (isinstance(e, FileNotFoundError) or not shutil.which(cmd[0])) else (e.strerror or str(e))
+        print(f"explainthis: cannot run '{cmd[0]}': {why}. Check the spelling, and that the program is installed and on your PATH." if lang == "en" else f"explainthis: مش قادر أشغل '{cmd[0]}': {why}. راجع الإملاء واتأكد إن البرنامج متسطب.", file=sys.stderr)
         return 127
     buf = []
     for line in p.stdout:
