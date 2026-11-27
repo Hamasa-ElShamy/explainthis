@@ -33,6 +33,8 @@ The small window: [`demo/gui-explain.png`](demo/gui-explain.png) (a real Chrome 
 
 **Try it without installing:** [browser demo](https://mohamed-elshamy-ai.github.io/explainthis/demo.html). Paste an error message; it runs the same Python in your browser via Pyodide (about 10 MB the first time, loaded from jsDelivr). Nothing you paste is uploaded. Text only: screenshot, clipboard, `run` and `watch` need the installed tool.
 
+**No Python?** Download a standalone file from [Releases](https://github.com/mohamed-elshamy-ai/explainthis/releases/tag/v0.2.0) (Linux, Windows, macOS Apple-silicon). They are **not code-signed**: Windows SmartScreen and macOS Gatekeeper will probably warn, and you can compare the file with `SHA256SUMS.txt`. Built by GitHub Actions from the tag; only the Linux file was run by a person (it printed correct output on the demo). The Windows and macOS files passed an automatic `--help` check only.
+
 ## Install and use
 
 ```
