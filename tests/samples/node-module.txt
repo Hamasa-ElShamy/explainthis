@@ -1,0 +1,6 @@
+node:internal/modules/cjs/loader:1433
+  throw err;
+  ^
+
+Error: Cannot find module 'nopkg'
+Require stack:

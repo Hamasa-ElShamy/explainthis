@@ -5,6 +5,7 @@ ERR_HINT = re.compile(r"(error|exception|traceback|failed|fatal|denied|not found
 
 
 def ocr_image(path):
+    if not os.path.isfile(path): sys.exit(f"explainthis: file not found: {path}")
     if not shutil.which("tesseract"):
         sys.exit("OCR needs the free `tesseract` program (sudo apt install tesseract-ocr, brew install tesseract, or the Windows installer).")
     langs = "eng+ara" if "ara" in subprocess.run(["tesseract", "--list-langs"], capture_output=True, text=True).stdout else "eng"
@@ -38,7 +39,11 @@ def clipboard():
 
 def run_cmd(cmd, lang):
     """Run a command, pass its output through, and explain automatically if it failed."""
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors="replace")
+    try:
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors="replace")
+    except OSError as e:
+        print(f"explainthis: cannot run '{cmd[0]}': {e.strerror or e}. Check the spelling, and that the program is installed and on your PATH." if lang == "en" else f"explainthis: مش قادر أشغل '{cmd[0]}': {e.strerror or e}. راجع الإملاء واتأكد إن البرنامج متسطب.", file=sys.stderr)
+        return 127
     buf = []
     for line in p.stdout:
         sys.stdout.write(line); buf.append(line)
@@ -86,7 +91,7 @@ def main(argv=None):
     s.add_parser("clipboard", help="explain whatever text is on the clipboard")
     i = s.add_parser("image", help="OCR a screenshot file and explain it"); i.add_argument("file")
     sc = s.add_parser("screen", help="capture the screen, OCR it and explain"); sc.add_argument("--region", help="x1,y1,x2,y2")
-    t = s.add_parser("text", help="explain text given as arguments"); t.add_argument("words", nargs="+")
+    t = s.add_parser("text", help="explain text given as arguments"); t.add_argument("words", nargs="*")
     g = s.add_parser("gui", help="open the local window"); g.add_argument("--no-open", action="store_true")
     o = ap.parse_args(argv)
     if o.cmd == "run":
@@ -99,7 +104,10 @@ def main(argv=None):
     if o.cmd == "screen":
         reg = tuple(int(x) for x in o.region.split(",")) if o.region else None
         print(engine.render(ocr_image(screen_region(reg)), o.lang)); return
-    if o.cmd == "text": print(engine.render(" ".join(o.words), o.lang)); return
+    if o.cmd == "text":
+        txt = " ".join(o.words) if o.words else ("" if sys.stdin.isatty() else sys.stdin.read())
+        if not txt.strip(): sys.exit("explainthis: no text given. Pass the message as arguments or pipe it in: some-command 2>&1 | explainthis text")
+        print(engine.render(txt, o.lang)); return
     if o.cmd == "gui":
         from . import gui; return gui.serve(open_browser=not o.no_open)
     if not sys.stdin.isatty():
