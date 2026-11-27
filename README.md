@@ -1,6 +1,6 @@
 # ExplainThis
 
-[![tests](https://github.com/mohamed-elshamy-ai/explainthis/actions/workflows/tests.yml/badge.svg)](https://github.com/mohamed-elshamy-ai/explainthis/actions/workflows/tests.yml) ![tests: 40 passing](https://img.shields.io/badge/tests-40%20passing-brightgreen) ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
+[![tests](https://github.com/mohamed-elshamy-ai/explainthis/actions/workflows/tests.yml/badge.svg)](https://github.com/mohamed-elshamy-ai/explainthis/actions/workflows/tests.yml) ![tests: 49 passing](https://img.shields.io/badge/tests-49%20passing-brightgreen) ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
 
 Don't just look at an error. Understand it. ExplainThis explains error messages and confusing system warnings in plain language (English or Arabic), says what is risky about the tempting shortcut, and **reads the error for you automatically**: from a command that failed, a log file, a pipe, the clipboard, or a screenshot. It never runs a fix and never clicks "Allow" for you. No cloud, no AI service: it runs on your computer.
 
